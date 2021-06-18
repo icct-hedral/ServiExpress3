@@ -3,7 +3,6 @@ package com.empresa.demo.model;
 import java.io.Serializable;
 import java.util.Date;
 
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,10 +16,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import ch.qos.logback.core.joran.spi.NoAutoStart;
-
-
-
 
 @Entity
 @Table(name = "comprobante")
@@ -30,7 +25,6 @@ public class Comprobante implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_comprobante;
 
-	
 	private String tipo_documento;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,13 +42,12 @@ public class Comprobante implements Serializable {
 	@NotEmpty
 	private String metodo_pago;
 
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
-	
+
 	@PrePersist
 	public void prePersist() {
-		fecha_emision= new Date();
+		fecha_emision = new Date();
 	}
 
 	public Comprobante() {

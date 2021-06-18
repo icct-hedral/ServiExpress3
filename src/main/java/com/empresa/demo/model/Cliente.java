@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
@@ -26,13 +27,17 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_cliente;
+	private int id;
 
 	@NotEmpty
 	private String nombre;
 
 	@NotEmpty
 	private String apellido;
+
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	private Date fecha_nacimiento;
 
 	@NotEmpty
 	private String documento_identidad;
@@ -48,7 +53,7 @@ public class Cliente implements Serializable {
 	@Email
 	private String correo;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_registro;
 
 	@NotEmpty
@@ -69,10 +74,10 @@ public class Cliente implements Serializable {
 		comprobantes = new ArrayList<Comprobante>();
 	}
 
-	public Cliente(int id_cliente, String nombre, String apellido, String documento_identidad, String celular,
-			String direccion, String correo, Date fecha_registro, String username, String password) {
+	public Cliente(int id, String nombre, String apellido, String documento_identidad, String celular, String direccion,
+			String correo, Date fecha_registro, String username, String password) {
 		super();
-		this.id_cliente = id_cliente;
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.documento_identidad = documento_identidad;
@@ -84,12 +89,12 @@ public class Cliente implements Serializable {
 		this.password = password;
 	}
 
-	public int getId_cliente() {
-		return id_cliente;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_cliente(int id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -106,6 +111,14 @@ public class Cliente implements Serializable {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public Date getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
 	public String getDocumento_identidad() {
