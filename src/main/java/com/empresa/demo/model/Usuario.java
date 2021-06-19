@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
 	private String documento_identidad;
 	private String celular;
 	private String username;
-	private String password;
+	private String contraseña;
 	private boolean enable;
 	private Date fecha_registro;
 
@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(int id_usuario, String nombre, String apellido, String documento_identidad, String celular,
-			String username, String password, boolean enable, Date fecha_registro) {
+			String username, String contraseña, boolean enable, Date fecha_registro) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nombre = nombre;
@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
 		this.documento_identidad = documento_identidad;
 		this.celular = celular;
 		this.username = username;
-		this.password = password;
+		this.contraseña = contraseña;
 		this.enable = enable;
 		this.fecha_registro = fecha_registro;
 	}
@@ -91,12 +91,12 @@ public class Usuario implements Serializable {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	public boolean isEnable() {

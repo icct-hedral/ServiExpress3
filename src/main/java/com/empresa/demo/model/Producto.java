@@ -1,12 +1,18 @@
 package com.empresa.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "producto")
@@ -14,18 +20,37 @@ public class Producto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_producto;
-	private double precio;
-	private int stock;
+	private Integer id_producto;
+	
+	@NotNull
+	private Double precio;
+	
+	@NotNull
+	private Integer stock;
+	
+	@NotEmpty
 	private String descripcion;
+	
+	@NotEmpty
 	private String imagen;
+	
+	@NotEmpty
 	private String nombre;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha_registro;
+	
 
+	@PrePersist
+	public void prePersist() {
+		fecha_registro = new Date();
+	}
+	
 	public Producto() {
 
 	}
 
-	public Producto(int id_producto, double precio, int stock, String descripcion, String imagen, String nombre) {
+	public Producto(Integer id_producto, Double precio, Integer stock, String descripcion, String imagen, String nombre) {
 		super();
 		this.id_producto = id_producto;
 		this.precio = precio;
@@ -35,27 +60,27 @@ public class Producto implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public int getId_producto() {
+	public Integer getId_producto() {
 		return id_producto;
 	}
 
-	public void setId_producto(int id_producto) {
+	public void setId_producto(Integer id_producto) {
 		this.id_producto = id_producto;
 	}
 
-	public double getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 
