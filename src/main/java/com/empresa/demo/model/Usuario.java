@@ -2,11 +2,18 @@ package com.empresa.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,42 +21,52 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_usuario;
-	private String nombre;
-	private String apellido;
-	private String documento_identidad;
-	private String celular;
+	@Column(name="username", unique=true, nullable=false,length=45)
 	private String username;
-	private String contraseña;
-	private boolean enable;
-	private Date fecha_registro;
+	@Column(name="nombre_user")
+	private String nombre;
+	@Column(name="apellido")
+	private String apellido;
+	@Column(name="documento_identidad")
+	private String documento_identidad;
+	@Column(name="celular")
+	private String celular;
+
+	@Column(name="password",nullable = false,length = 60)
+	private String password;
+	@Column(name="enabled",nullable = false)
+	private boolean enabled;
+	@Column(name="fecha_registro")
+
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+	private Set<Rol> userRole=new HashSet<Rol>();
 
 	public Usuario() {
 
 	}
 
-	public Usuario(int id_usuario, String nombre, String apellido, String documento_identidad, String celular,
-			String username, String contraseña, boolean enable, Date fecha_registro) {
+
+	public Usuario(String username, String password, boolean enable) {
+
 		super();
-		this.id_usuario = id_usuario;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.documento_identidad = documento_identidad;
-		this.celular = celular;
 		this.username = username;
-		this.contraseña = contraseña;
-		this.enable = enable;
-		this.fecha_registro = fecha_registro;
+
+		this.password = password;
+		this.enabled = enable;
+
+	}
+	
+	
+
+	public Usuario(String username, String password, boolean enable, Set<Rol> userRole) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enable;
+		this.userRole = userRole;
 	}
 
-	public int getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -100,20 +117,31 @@ public class Usuario implements Serializable {
 	}
 
 	public boolean isEnable() {
-		return enable;
+		return enabled;
 	}
 
 	public void setEnable(boolean enable) {
-		this.enable = enable;
+		this.enabled = enable;
 	}
 
 	public Date getFecha_registro() {
 		return fecha_registro;
 	}
 
+
+	public Set<Rol> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Set<Rol> userRole) {
+		this.userRole = userRole;
+	}
+
 	public void setFecha_registro(Date fecha_registro) {
 		this.fecha_registro = fecha_registro;
 	}
+	
+	
 
 	private static final long serialVersionUID = 1L;
 
