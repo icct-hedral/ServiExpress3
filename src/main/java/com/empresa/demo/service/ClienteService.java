@@ -10,7 +10,7 @@ public interface ClienteService {
 	public List<Cliente> findAll();
 
 	//metodo que nos permitira buscar un cliente por username
-	public Cliente buscarporUsername(String username);
+	//public Cliente buscarporUsername(String username);
 
 	// metodo para guardar un objeto cliente
 	public void guardar(Cliente cliente);

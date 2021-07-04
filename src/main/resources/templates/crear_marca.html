@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<h1 th:text="${titulo}"></h1>
+
+	<form th:action="@{/crear_marca}" th:object="${marca}" method="POST">
+		<table>
+			<tr>
+				<td>
+					Nombre de la Marca
+				</td>
+				<td>
+					<input type="text" th:field="*{mar_nombre}">
+
+				</td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="Crear Marca"></td>
+			</tr>
+
+		</table>
+		<input type="hidden" th:field="*{id_marca}">
+	</form>
+
+</body>
+
+</html>
