@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+	<!-- -->
+	<h1>Crear Producto</h1>
+
+	<form th:action="@{/crear_producto}" th:object="${producto}"
+		method="post">
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Nombre</label>
+			<div class="col-sm-6">
+				<input type="text" th:field="*{nombre}" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Categoria</label>
+			<div class="col-sm-6">
+				<select th:field="*{categoria}" class="form-control">
+					<option th:each="categoria : ${categorias}"
+						th:text="${categoria.cat_nombre}" th:value="${categoria.id_categoria}" />
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Marca</label>
+			<div class="col-sm-6">
+				<select th:field="*{marca}" class="form-control">
+					<option th:each="marca : ${marcas}"
+						th:text="${marca.mar_nombre}" th:value="${marca.id_marca}" />
+				</select>
+			</div>
+		</div>
+
+
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Descripción</label>
+			<div class="col-sm-6">
+				<textarea id="area_form" th:field="*{descripcion}"
+					class="form-control" maxlength="255" rows="5"></textarea>
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Precio</label>
+			<div class="col-sm-6">
+				<input type="number" th:field="*{precio}" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Stock</label>
+			<div class="col-sm-6">
+				<input type="text" readonly="readonly" th:field="*{stock}" th:value="0" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Foto</label>
+			<div class="col-sm-6">
+				<input type="text" th:field="*{imagen}" class="form-control" />
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<div class="col-sm-6">
+				<input type="submit" value="Guardar Producto"
+					class="btn btn-primary btn-xs" />
+			</div>
+		</div>
+		<input type="hidden" th:field="*{id_producto}">
+	</form>
+
+</body>
+</html>

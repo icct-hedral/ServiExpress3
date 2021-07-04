@@ -10,7 +10,7 @@ public interface ProductoService {
 	public List<Producto> findAll();
 
 	// metodo que nos mostrara los productos de una categoria seleccionada
-	public List<Producto> mostrarporCategoria(Integer id_categoria);
+	//public List<Producto> mostrarporCategoria(Integer id_categoria);
 
 	// metodo para guardar un objeto producto
 	public void guardar(Producto producto);

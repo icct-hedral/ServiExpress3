@@ -6,5 +6,5 @@ import com.empresa.demo.model.Cliente;
 
 public interface ClienteDao extends CrudRepository<Cliente, Integer> {
 
-	public Cliente buscarporUsername(String username);
+	//public Cliente buscarporUsername(String username);
 }
