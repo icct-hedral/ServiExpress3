@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	<div class="container mt-3">
+		<div class="col-sm-6">
+			<form th:action="@{/usuarios/nuevouser}" th:object=${usuario}
+				method="post" enctype="multipart/form-data">
+
+				<div class="card">
+					<div class="card-header">
+						<h3>Modulo Users</h3>
+
+						<div
+							th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+							th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+						</div>
+
+					</div>
+					<div class="card-body">
+						<!-- --->
+						<label>Username</label> <input th:field="*{username}" type="text"
+							class="form-control"> <label>Password</label> <input
+							th:field="*{password}" type="text" class="form-control">
+
+						<label>Nombre</label> <input th:field="*{nombre}" type="text"
+							class="form-control"> <label>Apellido</label> <input
+							th:field="*{apellido}" type="text" class="form-control">
+
+						<label>Documento de identidad</label> <input
+							th:field="*{documento_identidad}" type="text"
+							class="form-control"> <label>Celular</label> <input
+							th:field="*{celular}" type="number" class="form-control">
+
+					</div>
+				</div>
+				<div class="card-footer">
+					<input type="submit" value="Guardar" class="btn btn-success">
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<!-- MODULO ROL -->
+	<div class="container mt-3">
+		<div class="col-sm-6">
+			<form th:action="@{/usuarios/guardarrol}" th:object=${roles}
+				method="post" enctype="multipart/form-data">
+
+				<div class="card">
+					<div class="card-header">
+						<h3>Modulo Roles</h3>
+
+						<div
+							th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+							th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+						</div>
+
+					</div>
+					<div class="card-body">
+						<!-- --->
+						<label>Usuario</label> 
+						<select th:field="*{user}"
+							class="form-control" id="usuario">
+							<option th:each="user:${usuarios}" 
+								th:value="${user.username}"
+								th:text="${user.username}" />
+						</select> 
+						<label>ROL</label> 
+						<select th:field="*{nombreRol}" class="form-control">
+							<option value="0" selected>Seleccione el Rol</option>
+							<option value="ROLE_USER">ROLE_USER</option>
+							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+						</select>
+
+
+
+					</div>
+				</div>
+				<div class="card-footer">
+					<input type="submit" value="Guardar" class="btn btn-success">
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

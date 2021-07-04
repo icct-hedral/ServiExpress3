@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<title>CRUD</title>
+<link rel="stylesheet" th:href="@{/css/all.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/signin.css}">
+
+	
+	
+</head>
+	
+<body>
+
+	<!-- PIE DE PAGINA -->
+	<div class="footer">
+		<footer th:fragment="pie"
+			class="px-2 py-2 bg-warning text-center text-white fixed-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 footer-col">
+						<h3>Dirección</h3>
+						<p>
+							Calle Los Jazmines N°184 <br /> Lince, Urb. San Eugenio
+						</p>
+					</div>
+					<div class="col-md-4 footer-col">
+						<h3>Haz tu Pedido</h3>
+						<p>
+							Productos <br /> Ofertas <br /> Reservas <br />
+							Activaciones <br />
+
+						</p>
+
+
+						<ul class="list-inline">
+							<li><a target="_blank" href="#"
+								class="btn-social btn-outline"><i
+									class="fa fa-fw fa-facebook"></i></a></li>
+							<li><a target="_blank" href="#"
+								class="btn-social btn-outline"><i
+									class="fa fa-fw fa-google-plus"></i></a></li>
+							<li><a target="_blank" href="#"
+								class="btn-social btn-outline"><i
+									class="fa fa-fw fa-twitter"></i></a></li>
+							<li><a target="_blank" href="#"
+								class="btn-social btn-outline"><i
+									class="fa fa-fw fa-linkedin"></i></a></li>
+							<li><a target="_blank" href="#"
+								class="btn-social btn-outline"><i
+									class="fa fa-fw fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+					<div class="col-md-4 footer-col">
+						<h3>Nosotros</h3>
+						<p>
+							Quienes Somos? <br /> Contacto <br />
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</footer>
+
+	</div>
+
+</body>
+</html>
