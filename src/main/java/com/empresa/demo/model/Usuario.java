@@ -31,12 +31,13 @@ public class Usuario implements Serializable {
 	private String documento_identidad;
 	@Column(name="celular")
 	private String celular;
+
 	@Column(name="password",nullable = false,length = 60)
 	private String password;
 	@Column(name="enabled",nullable = false)
 	private boolean enabled;
 	@Column(name="fecha_registro")
-	private Date fecha_registro;
+
 	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
 	private Set<Rol> userRole=new HashSet<Rol>();
@@ -45,11 +46,15 @@ public class Usuario implements Serializable {
 
 	}
 
+
 	public Usuario(String username, String password, boolean enable) {
+
 		super();
 		this.username = username;
+
 		this.password = password;
 		this.enabled = enable;
+
 	}
 	
 	
@@ -103,12 +108,12 @@ public class Usuario implements Serializable {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	public boolean isEnable() {

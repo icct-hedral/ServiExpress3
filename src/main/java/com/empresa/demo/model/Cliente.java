@@ -19,6 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "cliente")
@@ -26,70 +29,81 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_cliente;
+	private Integer id;
 
+	// usamos el @NotEmpty para indicar que el campo no puede estar vacio
 	@NotEmpty
+	@Column(nullable = false)
 	private String nombre;
 
 	@NotEmpty
+	@Column(nullable = false)
 	private String apellido;
 
+	// usamos el @NotNull para indicar que el campo no puede ser nulo, se usa para
+	// tipos de datos númericos y fechas
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE)
+	private Date fecha_nacimiento;
+
+	@NotNull
+	@Column(length = 2, nullable = false)
+	private int edad;
+
 	@NotEmpty
+	@Column(nullable = false)
 	private String documento_identidad;
 
 	@NotEmpty
-	@Column(length = 9)
+	@Column(length = 9, nullable = false)
 	private String celular;
 
 	@NotEmpty
+	@Column(nullable = false)
 	private String direccion;
 
 	@NotEmpty
 	@Email
+	@Column(nullable = false)
 	private String correo;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_registro;
 
 	@NotEmpty
-	private String username;
+	@Column(nullable = false, unique = true)
+	private String usuario;
 
 	@NotEmpty
-	private String password;
+	@Column(nullable = false)
+	private String contraseña;
 
+	// relación de uno a muchos hacia el comprobante, el objeto mapeado es "cliente"
+	// esta apuntado hacia el comprobante
+	// este nos creara un foreign key automaticamente y asi relacionando cliente y
+	// comprobante
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Comprobante> comprobantes;
 
+	// metodo que nos ayudara a guardar la "fecha_registro" automaticamente,
+	// agarrara la fecha y hora actual
 	@PrePersist
 	public void prePersist() {
 		fecha_registro = new Date();
 	}
 
+	// inicializamos la lista en un arraylist
 	public Cliente() {
 		comprobantes = new ArrayList<Comprobante>();
 	}
 
-	public Cliente(int id_cliente, String nombre, String apellido, String documento_identidad, String celular,
-			String direccion, String correo, Date fecha_registro, String username, String password) {
-		super();
-		this.id_cliente = id_cliente;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.documento_identidad = documento_identidad;
-		this.celular = celular;
-		this.direccion = direccion;
-		this.correo = correo;
-		this.fecha_registro = fecha_registro;
-		this.username = username;
-		this.password = password;
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId_cliente() {
-		return id_cliente;
-	}
-
-	public void setId_cliente(int id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -108,8 +122,24 @@ public class Cliente implements Serializable {
 		this.apellido = apellido;
 	}
 
+	public Date getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
+	}
+
 	public String getDocumento_identidad() {
 		return documento_identidad;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
 	}
 
 	public void setDocumento_identidad(String documento_identidad) {
@@ -148,20 +178,20 @@ public class Cliente implements Serializable {
 		this.fecha_registro = fecha_registro;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	public List<Comprobante> getComprobantes() {
@@ -172,6 +202,7 @@ public class Cliente implements Serializable {
 		this.comprobantes = comprobantes;
 	}
 
+	// este metodo nos permitira agregar un comprobante a la vez
 	public void agregarComprobante(Comprobante comprobante) {
 		comprobantes.add(comprobante);
 	}
