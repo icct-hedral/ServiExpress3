@@ -37,9 +37,10 @@ public class Usuario implements Serializable {
 	@Column(name="enabled",nullable = false)
 	private boolean enabled;
 	@Column(name="fecha_registro")
+	private Date fecha_registro;
 
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "username")
 	private Set<Rol> userRole=new HashSet<Rol>();
 
 	public Usuario() {
@@ -108,13 +109,26 @@ public class Usuario implements Serializable {
 		this.username = username;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 
 	public boolean isEnable() {
 		return enabled;
