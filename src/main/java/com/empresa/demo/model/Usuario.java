@@ -41,9 +41,9 @@ public class Usuario implements Serializable {
 
 	@Column(name = "fecha_registro")
 	private Date fecha_registro;
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-	private Set<Rol> userRole = new HashSet<Rol>();
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "username")
+	private Set<Rol> userRole=new HashSet<Rol>();
 
 	// metodo que nos ayudara a guardar la "fecha_registro" automaticamente,
 	// agarrara la fecha y hora actual
@@ -112,14 +112,6 @@ public class Usuario implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public boolean isEnable() {
-		return enabled;
-	}
-
-	public void setEnable(boolean enable) {
-		this.enabled = enable;
 	}
 
 	public Date getFecha_registro() {
