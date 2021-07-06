@@ -46,8 +46,10 @@
 							th:field="*{documento_identidad}" type="text"
 							class="form-control"> <label>Celular</label> <input
 							th:field="*{celular}" type="number" class="form-control">
+
 						<label>Enabled</label> <input th:field="*{enabled}" type="text"
 							class="form-control">
+
 
 					</div>
 				</div>
@@ -126,14 +128,19 @@
 						<!-- --->
 						<label>Usuario</label> <select th:field="*{username}"
 							class="form-control" id="usuario">
+
 							<option th:each="username:${usuarios}"
-								th:value="${username.username}" th:text="${username.username}" />
+								th:value="${username.username}" th:text="${username.username}"/>
+
 						</select> <label>Rol</label> <select th:field="*{nombreRol}"
 							class="form-control" id="rol">
 							<option value="0" selected>Seleccione el Rol</option>
 							<option value="ROL_USER">ROL_USER</option>
+
 							<option value="ROL_ADMIN">ROL_CLIENTE</option>
-							<option value="ROL_CLIENTE">ROL_ADMIN</option>
+
+							<option value="ROL_ADMIN">ROL_ADMIN</option>
+
 						</select>
 
 

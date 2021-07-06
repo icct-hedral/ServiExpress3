@@ -38,7 +38,6 @@ public class Usuario implements Serializable {
 
 	@Column(name="fecha_registro")
 	private Date fecha_registro;
-
 	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "username",cascade = CascadeType.ALL)
 	private Set<Rol> userRole=new HashSet<Rol>();
@@ -111,15 +110,6 @@ public class Usuario implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-
-	public boolean isEnable() {
-		return enabled;
-	}
-
-	public void setEnable(boolean enable) {
-		this.enabled = enable;
 	}
 
 	public Date getFecha_registro() {
