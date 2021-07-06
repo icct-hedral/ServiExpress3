@@ -1,6 +1,6 @@
 package com.empresa.demo.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,7 +39,7 @@ public class RolController {
 		redirectAttrs
         	.addFlashAttribute("mensaje", "Agregado correctamente")
         	.addFlashAttribute("clase", "success");
-		return ViewConstant.USERFORM;
+		return "redirect:/usuarios/nuevouser";
 		
 	}
 

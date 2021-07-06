@@ -23,9 +23,8 @@ public class Rol implements Serializable{
 	@Column(name="id_rol", unique=true, nullable=false)
 	private int id_rol;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="username",nullable=false)
-	private Usuario user;
+	@Column(name="username",nullable = false)
+	private String username;
 	
 	@Column(name="nombre_rol", nullable = false,length = 45)
 	private String nombreRol;
@@ -37,38 +36,64 @@ public class Rol implements Serializable{
 	}
 	
 	
-	public Rol(Usuario user, String nombre) {
+
+
+
+	public Rol(int id_rol, String username, String nombreRol) {
 		super();
-		this.user = user;
-		this.nombreRol = nombre;
+		this.id_rol = id_rol;
+		this.username = username;
+		this.nombreRol = nombreRol;
 	}
 	
-
+	
 
 	public int getId_rol() {
 		return id_rol;
 	}
+
+
+
+
+
 	public void setId_rol(int id_rol) {
 		this.id_rol = id_rol;
 	}
+
+
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+
+
 	public String getNombreRol() {
 		return nombreRol;
 	}
-	public void setNombre(String nombre) {
-		this.nombreRol = nombre;
-	}
-	
-	
-	public Usuario getUser() {
-		return user;
+
+
+
+
+
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
 	}
 
 
-	public void setUser(Usuario user) {
-		this.user = user;
-	}
-	
-	
+
 
 
 

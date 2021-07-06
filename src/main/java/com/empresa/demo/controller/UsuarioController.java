@@ -37,10 +37,11 @@ public class UsuarioController {
 		
 		Rol roles=new Rol();
 		List<Usuario> listUsuarios=userService.listar();
-		model.addAttribute("usuarios",listUsuarios);
-		model.addAttribute("roles",roles);
-	
+		List<Rol> listaRoles=rolService.listar();
 		
+		model.addAttribute("usuarios",listUsuarios);
+		model.addAttribute("listroles",listaRoles);
+		model.addAttribute("roles",roles);
 		model.addAttribute("usuario",user);
 
 		
