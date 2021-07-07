@@ -1,5 +1,6 @@
 package com.empresa.demo.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.empresa.demo.model.Producto;
@@ -20,5 +21,10 @@ public interface ProductoService {
 
 	// metodo para eliminar un producto por su id
 	public void eliminar(Integer id_producto);
+	
+	
+	public void deleteAll();
+	
+	public void init() throws IOException;
 
 }

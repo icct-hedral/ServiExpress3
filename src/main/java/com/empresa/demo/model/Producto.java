@@ -3,14 +3,13 @@ package com.empresa.demo.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -31,18 +30,17 @@ public class Producto implements Serializable {
 	@NotNull
 	private Double precio;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer stock = 0;
 
 	@NotEmpty
 	private String descripcion;
 
 	@Column(nullable = false)
-	@NotNull
-	private String imagen;
+	private String foto;
 
 	@Column(nullable = false)
-	@NotNull
+	@NotEmpty
 	private String nombre;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -64,19 +62,6 @@ public class Producto implements Serializable {
 
 	}
 
-	public Producto(Integer id_producto, @NotNull Double precio, @NotNull Integer stock, @NotEmpty String descripcion,
-			@NotNull String imagen, @NotNull String nombre, Date fecha_registro, Marca marca, Categoria categoria) {
-		super();
-		this.id_producto = id_producto;
-		this.precio = precio;
-		this.stock = stock;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-		this.nombre = nombre;
-		this.fecha_registro = fecha_registro;
-		this.marca = marca;
-		this.categoria = categoria;
-	}
 
 	public Integer getId_producto() {
 		return id_producto;
@@ -110,12 +95,21 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getImagen() {
-		return imagen;
+	
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public Date getFecha_registro() {
+		return fecha_registro;
+	}
+
+	public void setFecha_registro(Date fecha_registro) {
+		this.fecha_registro = fecha_registro;
 	}
 
 	public String getNombre() {

@@ -24,6 +24,7 @@
 			<th>Usuario</th>
 			<th>Celular</th>
 			<th>Editar</th>
+			<th>Eliminar</th>
 		</tr>
 		<tr th:each="cliente : ${clientes}">
 			<td th:text="${cliente.id}"></td>
@@ -33,11 +34,10 @@
 			<td th:text="${cliente.correo}"></td>
 			<td th:text="${cliente.usuario}"></td>
 			<td th:text="${cliente.celular}"></td>
-			<td><a th:href="@{/crear_cliente/}+ ${cliente.id}" th:text='Editar' ></a></td>
+			<td><a th:href="@{crear_cliente/} + ${cliente.id}" th:text='Editar' ></a></td>
+			<td><a th:href="@{eliminar/} + ${cliente.id}" th:text='Eliminar' onclick="return confirm('Estas seguro de eliminar este cliente?');" ></a></td>
 		</tr>
 	</table>
-
-
 
 </body>
 </html>

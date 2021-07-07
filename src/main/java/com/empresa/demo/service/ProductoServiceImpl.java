@@ -1,11 +1,15 @@
 package com.empresa.demo.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileSystemUtils;
 
 import com.empresa.demo.dao.ProductoDao;
 import com.empresa.demo.model.Producto;
@@ -46,6 +50,20 @@ public class ProductoServiceImpl implements ProductoService {
 	@Transactional(readOnly = false)
 	public void eliminar(Integer id_producto) {
 		 productoDao.deleteById(id_producto);
+	}
+
+	@Override
+	public void deleteAll() {
+		//borrara la carpeta "uploads con todo su contenido"
+		FileSystemUtils.deleteRecursively(Paths.get("uploads").toFile()); 
+		
+	}
+
+	@Override
+	public void init() throws IOException {
+		//nos creara un directorio(carpeta) "uploads"
+		Files.createDirectory(Paths.get("uploads"));
+		
 	}
 
 }
