@@ -7,6 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+
 		<!-- lookup parent from repository -->
 
 		<version>2.3.12.RELEASE</version>
@@ -102,9 +103,6 @@
 			<artifactId>font-awesome</artifactId>
 			<version>${font-awesome.version}</version>
 		</dependency>
-
-
-
 	</dependencies>
 
 	<build>

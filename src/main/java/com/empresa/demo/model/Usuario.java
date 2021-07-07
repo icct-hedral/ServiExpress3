@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -18,21 +19,23 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 
 	@Id
-	@Column(name="username", unique=true, nullable=false,length=45)
+	@Column(name = "username", unique = true, nullable = false, length = 45)
 	private String username;
-	@Column(name="nombre_user")
+	@Column(name = "nombre_user")
 	private String nombre;
-	@Column(name="apellido")
+	@Column(name = "apellido")
 	private String apellido;
-	@Column(name="documento_identidad")
+	@Column(name = "documento_identidad")
 	private String documento_identidad;
-	@Column(name="celular")
+	@Column(name = "celular")
 	private String celular;
 
-	@Column(name="password",nullable = false,length = 60)
+	@Column(name = "password", nullable = false, length = 60)
 	private String password;
-	@Column(name="enabled",nullable = false)
+
+	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
+
 	@Column(name="fecha_registro")
 	private Date fecha_registro;
 
@@ -40,10 +43,17 @@ public class Usuario implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "username",cascade = CascadeType.ALL)
 	private Set<Rol> userRole=new HashSet<Rol>();
 
+
+	// metodo que nos ayudara a guardar la "fecha_registro" automaticamente,
+	// agarrara la fecha y hora actual
+	@PrePersist
+	public void prePersist() {
+		fecha_registro = new Date();
+	}
+
 	public Usuario() {
 
 	}
-
 
 	public Usuario(String username, String password, boolean enable) {
 
@@ -54,8 +64,6 @@ public class Usuario implements Serializable {
 		this.enabled = enable;
 
 	}
-	
-	
 
 	public Usuario(String username, String password, boolean enable, Set<Rol> userRole) {
 		super();
@@ -64,7 +72,6 @@ public class Usuario implements Serializable {
 		this.enabled = enable;
 		this.userRole = userRole;
 	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -106,26 +113,6 @@ public class Usuario implements Serializable {
 		this.username = username;
 	}
 
-	
-	public String getPassword() {
-		return password;
-	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
 
 	public boolean isEnable() {
 		return enabled;
@@ -139,6 +126,25 @@ public class Usuario implements Serializable {
 		return fecha_registro;
 	}
 
+	public void setFecha_registro(Date fecha_registro) {
+		this.fecha_registro = fecha_registro;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public Set<Rol> getUserRole() {
 		return userRole;
@@ -148,13 +154,6 @@ public class Usuario implements Serializable {
 		this.userRole = userRole;
 	}
 
-	public void setFecha_registro(Date fecha_registro) {
-		this.fecha_registro = fecha_registro;
-	}
-	
-	
-
 	private static final long serialVersionUID = 1L;
-
 
 }
