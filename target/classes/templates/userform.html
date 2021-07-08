@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="plantilla/template :: head">
 </head>
@@ -23,9 +23,21 @@
 					<div class="card-body">
 						<!-- --->
 						<label>Username</label> <input th:field="*{username}" type="text"
-							class="form-control"> <label>Password</label> <input
-							th:field="*{password}" type="text" class="form-control">
-
+							class="form-control">
+							
+						<!-- PASSWORD -->
+						<div class="form-group">
+							<label for="password">Password</label>
+							<div class="input-group" id="show_hide_password">
+								<input type="password" class="form-control" id="password"
+									autocomplete="off" th:field="*{password}" />
+								<div class="input-group-append">
+									<span class="input-group-text"><i
+										class="fa fa-eye-slash" aria-hidden="true"></i></span>
+								</div>
+							</div>
+						</div>
+						<!-- PASSWORD -->
 						<label>Nombre</label> <input th:field="*{nombre}" type="text"
 							class="form-control"> <label>Apellido</label> <input
 							th:field="*{apellido}" type="text" class="form-control">
@@ -34,6 +46,10 @@
 							th:field="*{documento_identidad}" type="text"
 							class="form-control"> <label>Celular</label> <input
 							th:field="*{celular}" type="number" class="form-control">
+
+						<label>Enabled</label> <input th:field="*{enabled}" type="text"
+							class="form-control">
+
 
 					</div>
 				</div>
@@ -44,6 +60,7 @@
 
 		</div>
 	</div>
+
 
 	<!-- MODULO ROL -->
 	<div class="container mt-3">
@@ -63,20 +80,22 @@
 					</div>
 					<div class="card-body">
 						<!-- --->
-						<label>Usuario</label> 
-						<select th:field="*{user}"
+						<label>Usuario</label> <select th:field="*{username}"
 							class="form-control" id="usuario">
-							<option th:each="user:${usuarios}" 
-								th:value="${user.username}"
-								th:text="${user.username}" />
-						</select> 
-						<label>ROL</label> 
-						<select th:field="*{nombreRol}" class="form-control">
-							<option value="0" selected>Seleccione el Rol</option>
-							<option value="ROLE_USER">ROLE_USER</option>
-							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
-						</select>
 
+							<option th:each="username:${usuarios}"
+								th:value="${username.username}" th:text="${username.username}"/>
+
+						</select> <label>Rol</label> <select th:field="*{nombreRol}"
+							class="form-control" id="rol">
+							<option value="0" selected>Seleccione el Rol</option>
+							<option value="ROL_USER">ROL_USER</option>
+
+							<option value="ROL_ADMIN">ROL_CLIENTE</option>
+
+							<option value="ROL_ADMIN">ROL_ADMIN</option>
+
+						</select>
 
 
 					</div>
