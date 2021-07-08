@@ -59,7 +59,7 @@ public class UsuarioController {
 	
 	
 	@PostMapping(value="/nuevouser")
-	public String guardarUser(@ModelAttribute @Valid Usuario us,
+	public String guardarUser(@ModelAttribute("usuario") @Valid Usuario usuario,
 			BindingResult bindingResult,RedirectAttributes redirectAttrs) {
 		
 		if (bindingResult.hasErrors()) {
@@ -67,14 +67,14 @@ public class UsuarioController {
 			return ViewConstant.USERFORM;
 		}
 		
-		if (userRepository.findByUsername(us.getUsername())!= null) {
+		if (userRepository.findByUsername(usuario.getUsername())!= null) {
 	        redirectAttrs
 	                .addFlashAttribute("mensaje", "Ya existe un usuario con ese código")
 	                .addFlashAttribute("clase", "warning");
 	        return "redirect:/usuarios/nuevouser";
 	    }
 		
-		userService.guardar(us);
+		userService.guardar(usuario);
 		
 		redirectAttrs
         	.addFlashAttribute("mensaje", "Agregado correctamente")

@@ -43,7 +43,7 @@ public class UsuarioServicesImpl implements UserDetailsService,UsuarioService {
 	
 	private User buildUser(com.empresa.demo.model.Usuario user, List<GrantedAuthority> authorities) {
 		
-		return new User(user.getUsername(),user.getPassword(), user.isEnable(), true, true, true, authorities);
+		return new User(user.getUsername(),user.getPassword(), user.isEnabled(), true, true, true, authorities);
 		
 	}
 	
