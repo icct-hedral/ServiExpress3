@@ -5,5 +5,7 @@ public class ViewConstant {
 	public static final String LOGIN = "login";
 	public static final String LISTACONTACTS = "contacts";
 	public static final String USERFORM = "userform";
+	public static final String LISTAUSUARIOS="listar_usuarios";
+	public static final String EDITUSUARIO="editar_usuario";
 
 }

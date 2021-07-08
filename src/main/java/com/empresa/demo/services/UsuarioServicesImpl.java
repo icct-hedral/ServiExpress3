@@ -58,8 +58,8 @@ public class UsuarioServicesImpl implements UserDetailsService,UsuarioService {
 	}
 
 	@Override
-	public void eliminar(int id) {
-		userRepository.deleteById(id);
+	public void eliminar(String username) {
+		userRepository.deleteById(username);
 	}
 
 	@Override

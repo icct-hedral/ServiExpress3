@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="plantilla/template :: head">
 </head>
@@ -23,9 +23,21 @@
 					<div class="card-body">
 						<!-- --->
 						<label>Username</label> <input th:field="*{username}" type="text"
-							class="form-control"> <label>Password</label> <input
-							th:field="*{password}" type="text" class="form-control">
-
+							class="form-control">
+							
+						<!-- PASSWORD -->
+						<div class="form-group">
+							<label for="password">Password</label>
+							<div class="input-group" id="show_hide_password">
+								<input type="password" class="form-control" id="password"
+									autocomplete="off" th:field="*{password}" />
+								<div class="input-group-append">
+									<span class="input-group-text"><i
+										class="fa fa-eye-slash" aria-hidden="true"></i></span>
+								</div>
+							</div>
+						</div>
+						<!-- PASSWORD -->
 						<label>Nombre</label> <input th:field="*{nombre}" type="text"
 							class="form-control"> <label>Apellido</label> <input
 							th:field="*{apellido}" type="text" class="form-control">
@@ -34,8 +46,8 @@
 							th:field="*{documento_identidad}" type="text"
 							class="form-control"> <label>Celular</label> <input
 							th:field="*{celular}" type="number" class="form-control">
-						<label>Enabled</label> <input
-							th:field="*{enabled}" type="text" class="form-control">	
+						<label>Enabled</label> <input th:field="*{enabled}" type="text"
+							class="form-control">
 
 					</div>
 				</div>
@@ -46,6 +58,53 @@
 
 		</div>
 	</div>
+
+	<!-- FUNCION TOGGLE PASSWORD -->
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/password-strength-meter/password.min.js}"></script>
+
+	<script>
+    $('#password').password({
+        closestSelector: '.form-group',
+        shortPass: 'The password is too short',
+        badPass: 'Weak; try combining letters & numbers',
+        goodPass: 'Medium; try using special characters',
+        strongPass: 'Strong password',
+        containsField: 'The password contains your username',
+        enterPass: 'Type your password',
+        showPercent: false,
+        showText: true, // shows the text tips
+        animate: true, // whether or not to animate the progress bar on input blur/focus
+        animateSpeed: 'fast', // the above animation speed
+        field: false, // select the match field (selector or jQuery instance) for better password checks
+        fieldPartialMatch: true, // whether to check for partials in field
+        minimumLength: 4 // minimum password length (below this threshold, the score is 0)
+    });
+</script>
+
+<script>
+    var input = $("#show_hide_password input");
+    var icon = $("#show_hide_password i");
+
+    icon.on('click', function (event) {
+        event.preventDefault();
+
+        if (input.attr("type") === "text") {
+            input.attr('type', 'password');
+            icon.addClass("fa-eye-slash");
+            icon.removeClass("fa-eye");
+
+        } else if (input.attr("type") === "password") {
+            input.attr('type', 'text');
+            icon.removeClass("fa-eye-slash");
+            icon.addClass("fa-eye");
+        }
+    });
+</script>
+
+	<!-- FIN FUNCION TOGGLE PASSWORD -->
 
 	<!-- MODULO ROL -->
 	<div class="container mt-3">
@@ -67,14 +126,13 @@
 						<!-- --->
 						<label>Usuario</label> <select th:field="*{username}"
 							class="form-control" id="usuario">
-							<option th:each="username:${usuarios}" th:value="${username.username}"
-								th:text="${username.username}" />
+							<option th:each="username:${usuarios}"
+								th:value="${username.username}" th:text="${username.username}" />
 						</select> <label>Rol</label> <select th:field="*{nombreRol}"
 							class="form-control" id="rol">
 							<option value="0" selected>Seleccione el Rol</option>
 							<option value="ROL_USER">ROL_USER</option>
-							<option value="ROL_ADMIN">ROL_ADMIN</option>
-							<option value="ROL_USER">ROL_USER</option>
+							<option value="ROL_ADMIN">ROL_CLIENTE</option>
 							<option value="ROL_CLIENTE">ROL_ADMIN</option>
 						</select>
 

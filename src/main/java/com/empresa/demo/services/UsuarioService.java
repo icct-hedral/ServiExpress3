@@ -13,7 +13,7 @@ import com.empresa.demo.model.Usuario;
 public interface UsuarioService {
 
 	public List<Usuario> listar();
-	public void eliminar(int id);
+	public void eliminar(String username);
 	public int guardar(Usuario r);
 
 }
