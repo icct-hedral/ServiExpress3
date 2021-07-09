@@ -1,12 +1,14 @@
 package com.empresa.demo.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -100,6 +102,7 @@ public class ProductoController {
 	
 		productoServiceImpl.guardar(producto);
 		attribute.addFlashAttribute("mensaje", "Agregado correctamente").addFlashAttribute("clase", "success");
+
 		return "redirect:/listar_productos";
 	}
 	
@@ -116,6 +119,8 @@ public class ProductoController {
 	}
 	
 	
+	public String editar(@PathVariable int id, Model model) {
+		Produc
 	/**@GetMapping(value = "/crear_producto/{id_producto}")
 	private String actualizarProducto(@PathVariable(value = "id_producto") Integer id_producto, Map<String, Object> model) {
 		
