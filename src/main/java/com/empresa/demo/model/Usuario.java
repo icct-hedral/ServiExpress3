@@ -58,7 +58,6 @@ public class Usuario implements Serializable {
 
 		super();
 		this.username = username;
-
 		this.password = password;
 		this.enabled = enable;
 
