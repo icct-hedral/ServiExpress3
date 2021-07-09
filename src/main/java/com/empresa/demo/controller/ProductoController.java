@@ -1,11 +1,13 @@
 package com.empresa.demo.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -16,12 +18,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.demo.model.Categoria;
 import com.empresa.demo.model.Marca;
@@ -71,8 +75,50 @@ public class ProductoController {
 	}
 	
 	
+	@PostMapping(value = "/crear_producto")
+	public String guardarProducto(@ModelAttribute @Valid Producto producto, BindingResult bindingResult,
+			@RequestParam("file") MultipartFile imagen, RedirectAttributes attribute) {
+		
+		if (bindingResult.hasErrors()) {
+			return "nuevoproducto";
+		}
+		
+		if (!imagen.isEmpty()) {
+			Path directorioImagenes = Paths.get("src//main//resources//static//image/productos");
+			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+
+			try {
+				byte[] bytesImg = imagen.getBytes();
+				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+				Files.write(rutaCompleta, bytesImg);
+
+				producto.setFoto(imagen.getOriginalFilename());
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+		
 	
-	@GetMapping(value = "/crear_producto/{id_producto}")
+		productoServiceImpl.guardar(producto);
+		attribute.addFlashAttribute("mensaje", "Agregado correctamente").addFlashAttribute("clase", "success");
+		return "redirect:/crear_producto";
+	}
+	
+	@GetMapping("/editarproducto/{id}")
+	public String editar(@PathVariable int id, Model model) {
+		Producto producto = productoServiceImpl.buscarporID(id);
+		List<Marca> listamarcas= marcaServiceImpl.findAll();
+		List<Categoria> listCategorias = categoriaServiceImpl.findAll();
+		model.addAttribute("marcas", listamarcas);
+		model.addAttribute("producto", producto);
+		 model.addAttribute("titulo","Editar Producto");		
+		model.addAttribute("categorias", listCategorias);
+		return "crear_producto";
+	}
+	
+	
+	/**@GetMapping(value = "/crear_producto/{id_producto}")
 	private String actualizarProducto(@PathVariable(value = "id_producto") Integer id_producto, Map<String, Object> model) {
 		
 		Producto producto = null;
@@ -87,10 +133,11 @@ public class ProductoController {
 		
 		return "crear_producto";
 	}
+	**/
 	
 	
 	
-	@PostMapping(value = "/crear_producto")
+	/**@PostMapping(value = "/crear_producto")
 	public String guardarProducto(@Valid Producto producto, BindingResult result,@RequestParam("file") MultipartFile foto, SessionStatus status) {
 		if(result.hasErrors()) {
 			return "/crear_producto";
@@ -135,32 +182,13 @@ public class ProductoController {
 		status.setComplete();
 		return "redirect:hola";
 	}
+	**/
 	
-	@GetMapping(value = "/eliminar/{id_producto}")
-	private String eliminarProducto(@PathVariable(value = "id_producto") Integer id_producto) {
-		
-		
-		if(id_producto>0 ) {
-			Producto producto=productoServiceImpl.buscarporID(id_producto);
-			productoServiceImpl.eliminar(id_producto);
-			
-			//obtenemos la ruta absoluta
-			Path rootPath= Paths.get("uploads").resolve(producto.getFoto()).toAbsolutePath();
-			//la ruta absoluta de la foto del producto se convierte en un archivo
-			File archivo= rootPath.toFile();
-			
-			//si el archivo existe y se puede leer se va eliminar junto con el producto
-			if(archivo.exists() && archivo.canRead()) {
-				if(archivo.delete()) {
-					System.out.println("se elimino la foto del cliente");
-				}
-			}
-			
-		}
-			return "redirect:/listar_productos";
-		
+	@GetMapping("/eliminarproducto/{id}")
+	public String delete(Model model, @PathVariable int id) {
+		productoServiceImpl.eliminar(id);
+		return "redirect:/listar_productos";
 	}
-	
 	
 
 	

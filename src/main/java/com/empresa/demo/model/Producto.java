@@ -47,10 +47,10 @@ public class Producto implements Serializable {
 	@Column(nullable = false)
 	private Date fecha_registro;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Marca marca;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Categoria categoria;
 
 	@PrePersist

@@ -32,9 +32,10 @@
 			<td th:text="${producto.descripcion}"></td>
 			<td th:text="${producto.precio}"></td>
 			<td th:text="${producto.stock}"></td>
-			<td><img  class="img-thumbnail rounded float-center" style="max-width: 15%" th:src="@{'/uploads/' +${producto.foto}}" th:alt="${producto.foto}" />  </td>
-			<td><a th:href="@{crear_producto/} + ${producto.id_producto}" th:text='Editar' ></a></td>
-			<td><a th:href="@{eliminar/} + ${producto.id_producto}" th:text='Eliminar' onclick="return confirm('Estas seguro de eliminar este producto?');" ></a></td>
+			<td><img  class="img-thumbnail rounded float-center" style="max-width: 15%" th:src="*{'image/productos/' + {producto.foto}}" 
+										th:alt="${producto.foto}"/>  </td>
+			<td><a th:href="@{editarproducto/} + ${producto.id_producto}" th:text='Editar' ></a></td>
+			<td><a th:href="@{eliminarproducto/} + ${producto.id_producto}" th:text='Eliminar' onclick="return confirm('Estas seguro de eliminar este producto?');" ></a></td>
 		</tr>
 	</table>
 </body>
