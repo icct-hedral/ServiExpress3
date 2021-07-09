@@ -47,7 +47,7 @@ public class Comprobante implements Serializable {
 	private String metodo_pago;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Cliente cliente;
+	private Usuario usuario;
 
 	// tendremos una relación de uno a muchos, apuntado hacia el detalle, esta sera
 	// la unica relación entre las dos clases
