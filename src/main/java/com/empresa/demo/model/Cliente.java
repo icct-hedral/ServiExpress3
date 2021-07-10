@@ -79,13 +79,6 @@ public class Cliente implements Serializable {
 	@Column(nullable = false)
 	private String contraseña;
 
-	// relación de uno a muchos hacia el comprobante, el objeto mapeado es "cliente"
-	// esta apuntado hacia el comprobante
-	// este nos creara un foreign key automaticamente y asi relacionando cliente y
-	// comprobante
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Comprobante> comprobantes;
-
 	// metodo que nos ayudara a guardar la "fecha_registro" automaticamente,
 	// agarrara la fecha y hora actual
 	@PrePersist
@@ -95,7 +88,7 @@ public class Cliente implements Serializable {
 
 	// inicializamos la lista en un arraylist
 	public Cliente() {
-		comprobantes = new ArrayList<Comprobante>();
+
 	}
 
 	public Integer getId() {
@@ -192,19 +185,6 @@ public class Cliente implements Serializable {
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
-	}
-
-	public List<Comprobante> getComprobantes() {
-		return comprobantes;
-	}
-
-	public void setComprobantes(List<Comprobante> comprobantes) {
-		this.comprobantes = comprobantes;
-	}
-
-	// este metodo nos permitira agregar un comprobante a la vez
-	public void agregarComprobante(Comprobante comprobante) {
-		comprobantes.add(comprobante);
 	}
 
 	private static final long serialVersionUID = 1L;

@@ -4,6 +4,7 @@ public class ViewConstant {
 	
 	public static final String INDEX = "portada";
 	public static final String LOGIN = "login";
+
 	//Usuarios
 	public static final String USERFORM = "dashboard/userform";
 	public static final String LISTAUSUARIOS="dashboard/listar_usuarios";
@@ -19,6 +20,9 @@ public class ViewConstant {
 	
 	//Marca
 	public static final String CATEGORIAFORM = "dashboard/crear_categoria";
+
+
+	public static final String USUDETALLE="ver_detalle";
 
 
 }

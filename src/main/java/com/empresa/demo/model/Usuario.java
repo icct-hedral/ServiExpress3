@@ -1,8 +1,10 @@
 package com.empresa.demo.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -36,12 +38,18 @@ public class Usuario implements Serializable {
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
 
-	@Column(name="fecha_registro")
+	@Column(name = "fecha_registro")
 	private Date fecha_registro;
-	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "username",cascade = CascadeType.ALL)
-	private Set<Rol> userRole=new HashSet<Rol>();
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "username", cascade = CascadeType.ALL)
+	private Set<Rol> userRole = new HashSet<Rol>();
+
+	// relación de uno a muchos hacia el comprobante, el objeto mapeado es "usuario"
+	// esta apuntado hacia el comprobante
+	// este nos creara un foreign key automaticamente y asi relacionando cliente y
+	// comprobante
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Comprobante> comprobantes;
 
 	// metodo que nos ayudara a guardar la "fecha_registro" automaticamente,
 	// agarrara la fecha y hora actual
@@ -50,8 +58,9 @@ public class Usuario implements Serializable {
 		fecha_registro = new Date();
 	}
 
+	// inicializamos la lista en un arraylist
 	public Usuario() {
-
+		this.comprobantes = new ArrayList<Comprobante>();
 	}
 
 	public Usuario(String username, String password, boolean enable) {
@@ -135,12 +144,25 @@ public class Usuario implements Serializable {
 		this.enabled = enabled;
 	}
 
+	public List<Comprobante> getComprobantes() {
+		return comprobantes;
+	}
+
+	public void setComprobantes(List<Comprobante> comprobantes) {
+		this.comprobantes = comprobantes;
+	}
+
 	public Set<Rol> getUserRole() {
 		return userRole;
 	}
 
 	public void setUserRole(Set<Rol> userRole) {
 		this.userRole = userRole;
+	}
+
+	// este metodo nos permitira agregar un comprobante a la vez
+	public void agregarComprobante(Comprobante comprobante) {
+		comprobantes.add(comprobante);
 	}
 
 	private static final long serialVersionUID = 1L;

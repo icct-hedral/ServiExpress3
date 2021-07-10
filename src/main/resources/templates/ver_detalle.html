@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+
+<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-ligth">
+
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body"></div>
+
+
+			<ul class="list-group">
+				<li class="list-group-item"
+					th:text=" 'Usuario:  ' +${usuario.username}"></li>
+				<li class="list-group-item"
+					th:text=" 'Celular:  ' +${usuario.celular}"></li>
+				<li class="list-group-item"
+					th:text=" 'Documento de identidad:  ' +${usuario.documento_identidad}">
+				</li>
+			</ul>
+			
+			<div class="container py-4">
+			<a class="btn btn-success"
+				th:href="@{/comprobante/form_comprobante/}+ ${usuario.username}">Crear Comprobante<i
+					class="fa fa-edit"></i></a>
+			</div>
+			
+			<div th:if="${#lists.isEmpty(usuario.comprobantes)}"
+					class="alert alert-info my-4"
+					th:text="'No hay comprobantes realizados por el cliente ' + ${usuario.nombre} + ' ' + ${usuario.apellido}"></div>
+			
+			
+
+			<table th:if="${not #lists.isEmpty(usuario.comprobantes)}"
+					class="table table-bordered table-striped my-4">
+				<thead class="thead-dark">
+					<tr>
+						<th>Comprobante</th>
+						<th>Fecha de Emisión</th>
+						<th>Tipo de documento</th>
+						<th>Metodo de Pago</th>
+						<th>Subtotal</th>
+						<th>IGV</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+			
+					<tr th:each=" comprobante : ${usuario.comprobantes}">
+						<td th:text="${comprobante.id_comprobante}"></td>
+						<td th:text="${comprobante.fecha_emision}"></td>
+						<td th:text="${comprobante.tipo_documento}"></td>
+						<td th:text="${comprobante.metodo_pago}"></td>
+						<td th:text="${comprobante.subtotal}"></td>
+						<td th:text="${comprobante.igv}"></td>
+						<td th:text="${comprobante.total}"></td>
+				</tr>
+					
+				</tbody>
+			</table>
+
+
+
+
+		</div>
+	</div>
+
+</body>
+</html>
