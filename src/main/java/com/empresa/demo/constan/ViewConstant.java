@@ -8,5 +8,6 @@ public class ViewConstant {
 	public static final String USERFORM = "userform";
 	public static final String LISTAUSUARIOS="listar_usuarios";
 	public static final String EDITUSUARIO="editar_usuario";
+	public static final String USUDETALLE="ver_detalle";
 
 }

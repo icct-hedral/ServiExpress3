@@ -1,6 +1,7 @@
 package com.empresa.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -124,6 +125,21 @@ public class UsuarioController {
 	            .addFlashAttribute("mensaje", "Editado correctamente")
 	            .addFlashAttribute("clase", "success");
 	    return "redirect:/usuarios/listauser";
+	}
+	
+	@GetMapping(value = "/ver_detalle/{username}")
+	public String verDetalle(@PathVariable (value = "username") String username, Map<String, Object>model) {
+		
+		Usuario usuario= userRepository.findByUsername(username);
+		
+		if(usuario==null) {
+			System.out.println("Usuario no existe en BD");
+			return "redirect:/usuarios/listauser";
+		}
+		model.put("usuario", usuario);
+		model.put("titulo", "Detalle de datos del cliente:  "+ usuario.getNombre()+" "+usuario.getApellido());
+		
+		return "ver_detalle";
 	}
 	
 	@PostMapping(value = "/eliminar")

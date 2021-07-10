@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="plantilla/template :: head">
+
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	
+
+
+	<div class="container py-5 ">
+		<div class="card bg-ligth">
+
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body"></div>
+
+			<h4 class="card-title">
+	<a class="btn btn-primary"
+				th:href="@{/usuarios/ver_detalle/}+ ${comprobante.usuario.username}">Volver</a>
+
+			
+			</h4>
+
+			<form action="@{/comprobante/comprobante_form/}"
+				th:object="${comprobante}" method="POST">
+
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Cliente</label>
+					<div class="col-sm-6">
+						<input
+							th:value="${comprobante.usuario.nombre} + ' '+ ${comprobante.usuario.apellido}"
+							disabled="disabled" />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Tipo de Comprobante</label>
+					<div class="col-sm-6">
+						<select th:field="*{tipo_documento}" class="form-control">
+							<option th:text="'Boleta'" th:value="boleta" />
+							<option th:text="'Factura'" th:value="factura" />
+						</select>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Metodo de Pago</label>
+					<div class="col-sm-6">
+						<select th:field="*{metodo_pago}" class="form-control">
+							<option th:text="'Tarjeta débito'" th:value="tarjeta_debito" />
+						</select>
+					</div>
+				</div>
+
+
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" th:value="${titulo}"
+							class="btn btn-secondary" />
+					</div>
+				</div>
+
+
+
+			</form>
+
+
+		</div>
+	</div>
+</body>
+</html>

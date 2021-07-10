@@ -46,8 +46,8 @@ public class Comprobante implements Serializable {
 	@NotEmpty
 	private String metodo_pago;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Cliente cliente;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Usuario usuario;
 
 	// tendremos una relación de uno a muchos, apuntado hacia el detalle, esta sera
 	// la unica relación entre las dos clases
@@ -55,7 +55,7 @@ public class Comprobante implements Serializable {
 	// relacionarlas
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_comprobante")
-	List<Detalle_comprobante> items;
+	private List<Detalle_comprobante> items;
 
 	@PrePersist
 	public void prePersist() {
@@ -134,6 +134,14 @@ public class Comprobante implements Serializable {
 
 	public void setMetodo_pago(String metodo_pago) {
 		this.metodo_pago = metodo_pago;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public List<Detalle_comprobante> getItems() {
