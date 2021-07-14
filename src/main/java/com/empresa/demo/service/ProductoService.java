@@ -11,7 +11,7 @@ public interface ProductoService {
 	public List<Producto> findAll();
 
 	// metodo que nos mostrara los productos de una categoria seleccionada
-	//public List<Producto> mostrarporCategoria(Integer id_categoria);
+	// public List<Producto> mostrarporCategoria(Integer id_categoria);
 
 	// metodo para guardar un objeto producto
 	public void guardar(Producto producto);
@@ -21,10 +21,11 @@ public interface ProductoService {
 
 	// metodo para eliminar un producto por su id
 	public void eliminar(Integer id_producto);
-	
-	
+
+	public List<Producto> findByNombre(String term);
+
 	public void deleteAll();
-	
+
 	public void init() throws IOException;
 
 }

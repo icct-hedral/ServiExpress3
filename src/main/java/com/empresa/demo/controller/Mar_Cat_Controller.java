@@ -38,7 +38,7 @@ public class Mar_Cat_Controller {
 	@RequestMapping(value = "/crear_marca", method = RequestMethod.POST)
 	public String guardarMarca(Marca marca) {
 		marcaServiceImpl.guardar(marca);
-		return "redirect:hola";
+		return "redirect:listar_productos";
 	}
 	
 
@@ -53,14 +53,10 @@ public class Mar_Cat_Controller {
 	@RequestMapping(value = "/crear_categoria", method = RequestMethod.POST)
 	public String guardarCategoria(Categoria categoria) {
 		categoriaServiceImpl.guardar(categoria);
-		return "redirect:hola";
+		return "redirect:listar_productos";
 	}
 	
 
-	@RequestMapping(value = "/hola")
-	public String hola() {
-		return "hola";
-	}
 	
 
 }

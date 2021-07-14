@@ -28,7 +28,7 @@ public class Categoria implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String cat_nombre;
 
-	@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Producto> productos;
 
 	public Categoria() {

@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "producto")
 public class Producto implements Serializable {
@@ -47,9 +49,12 @@ public class Producto implements Serializable {
 	@Column(nullable = false)
 	private Date fecha_registro;
 
+	//se agrega para marcar al objeto hijo, para que no cause recursividad en nuestras consultas
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Marca marca;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Categoria categoria;
 

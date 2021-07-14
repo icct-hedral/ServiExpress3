@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -80,7 +81,7 @@ public class ProductoController {
 			@RequestParam("file") MultipartFile imagen, RedirectAttributes attribute) {
 		
 		if (bindingResult.hasErrors()) {
-			return "nuevoproducto";
+			return "crear_producto";
 		}
 		
 		if (!imagen.isEmpty()) {
@@ -102,7 +103,7 @@ public class ProductoController {
 	
 		productoServiceImpl.guardar(producto);
 		attribute.addFlashAttribute("mensaje", "Agregado correctamente").addFlashAttribute("clase", "success");
-		return "redirect:/crear_producto";
+		return "redirect:/listar_productos";
 	}
 	
 	@GetMapping("/editarproducto/{id}")
@@ -189,6 +190,11 @@ public class ProductoController {
 		productoServiceImpl.eliminar(id);
 		return "redirect:/listar_productos";
 	}
+	
+	
+	
+	
+	
 	
 
 	

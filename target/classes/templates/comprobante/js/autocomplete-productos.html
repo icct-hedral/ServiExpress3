@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<body>
+
+		<script type="text/javascript" th:fragment="javascript">
+		$(document).ready(function() {
+
+			$("#buscar_producto").autocomplete({
+
+				source : function(request, response) {
+					$.ajax({
+						url : "/comprobante/cargar-productos/" + request.term,
+						dataType : "json",
+						data : {
+							term : request.term
+						},
+						success : function(data) {
+							response($.map( data, function(item) {
+								return {
+									value : item.id_producto,
+									label : item.nombre,
+									precio : item.precio,
+								};
+							}));
+						},
+					});
+				},
+				select : function(event, ui) {
+					//$("#buscar_producto").val(ui.item.label);
+					
+				if(itemsHelper.hasProducto(ui.item.value)){
+					itemsHelper.incrementaCantidad(ui.item.value, ui.item.precio);
+					return false;
+				}	
+					
+				var linea=$("#plantillaItemsComprobante").html();
+				
+				linea = linea.replace(/{ID}/g, ui.item.value);
+				linea = linea.replace(/{NOMBRE}/g, ui.item.label);
+				linea = linea.replace(/{PRECIO}/g, ui.item.precio);
+				
+				$("#cargarItemProductos tbody").append(linea);
+				
+				itemsHelper.calcularImporte(ui.item.value , ui.item.precio, 1);
+				
+				return false;
+				}
+			});
+			
+			$("form_comprobante").submit(function(){
+				$("#plantillaItemsComprobante").remove();
+				return;
+			});
+			
+		});
+		
+		
+		var itemsHelper= {
+				
+			calcularImporte: function (id_producto,precio,cantidad){
+				
+				$("#total_importe_"+id_producto).html(parseInt(precio) * parseInt(cantidad));
+				
+				this.calcularGranTotal();
+			
+				
+			},
+			hasProducto: function(id_producto){
+				
+				var resultado= false;
+				$('input[name="item_id[]"]').each(function(){
+						
+					if(parseInt(id_producto) == parseInt($(this).val()) ){
+						resultado = true;
+					}					
+				});
+				
+				return resultado;
+			},
+			incrementaCantidad: function(id_producto,precio){
+				var cantidad = $("#cantidad_"+id_producto).val() ? parseInt($("#cantidad_"+ id_producto).val()) : 0;
+				$("#cantidad_"+id_producto).val(++cantidad)
+				
+				this.calcularImporte(id_producto,precio,cantidad);
+			},
+			eliminarLineaComprobante : function(id_producto){
+				$("#row_"+id_producto).remove();
+				this.calcularGranTotal();
+			},
+			calcularGranTotal: function(){
+				
+				var total=0;
+				
+				$('span[id^="total_importe_"]').each(function() {
+					
+					total += parseInt($(this).html());					
+				});
+				
+				$('#gran_total').html(total);
+			}
+		}
+			
+	</script>
+</body>
+</html>
