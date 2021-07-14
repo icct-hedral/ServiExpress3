@@ -29,22 +29,22 @@ public class Comprobante implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_comprobante;
 
-	private String tipo_documento;
+	//private String tipo_documento;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha_emision;
 
-	@NotNull
-	private Double subtotal;
+	
+	//private Double subtotal;
 
-	@NotNull
-	private Double igv;
+	
+	//private Double igv;
 
-	@NotNull
-	private Double total;
+	
+	//private Double total;
 
-	@NotEmpty
-	private String metodo_pago;
+	
+	//private String metodo_pago;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Usuario usuario;
@@ -53,7 +53,7 @@ public class Comprobante implements Serializable {
 	// la unica relación entre las dos clases
 	// (osea un sentido) por lo cual tendremos que crear una foreign key para
 	// relacionarlas
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_comprobante")
 	private List<Detalle_comprobante> items;
 
@@ -67,17 +67,7 @@ public class Comprobante implements Serializable {
 		this.items = new ArrayList<Detalle_comprobante>();
 	}
 
-	public Comprobante(Integer id_comprobante, String tipo_documento, Date fecha_emision, Double subtotal, Double igv,
-			Double total, String metodo_pago) {
-		super();
-		this.id_comprobante = id_comprobante;
-		this.tipo_documento = tipo_documento;
-		this.fecha_emision = fecha_emision;
-		this.subtotal = subtotal;
-		this.igv = igv;
-		this.total = total;
-		this.metodo_pago = metodo_pago;
-	}
+	
 
 	public Integer getId_comprobante() {
 		return id_comprobante;
@@ -87,13 +77,13 @@ public class Comprobante implements Serializable {
 		this.id_comprobante = id_comprobante;
 	}
 
-	public String getTipo_documento() {
-		return tipo_documento;
-	}
+	//public String getTipo_documento() {
+		//return tipo_documento;
+	//}
 
-	public void setTipo_documento(String tipo_documento) {
-		this.tipo_documento = tipo_documento;
-	}
+	//public void setTipo_documento(String tipo_documento) {
+		//this.tipo_documento = tipo_documento;
+	//}
 
 	public Date getFecha_emision() {
 		return fecha_emision;
@@ -104,37 +94,37 @@ public class Comprobante implements Serializable {
 		this.fecha_emision = fecha_emision;
 	}
 
-	public Double getSubtotal() {
-		return subtotal;
-	}
+	//public Double getSubtotal() {
+		//return subtotal;
+	//}
 
-	public void setSubtotal(Double subtotal) {
-		this.subtotal = subtotal;
-	}
+	//public void setSubtotal(Double subtotal) {
+		//this.subtotal = subtotal;
+	//}
 
-	public Double getIgv() {
-		return igv;
-	}
+	//public Double getIgv() {
+		//return igv;
+	//}
 
-	public void setIgv(Double igv) {
-		this.igv = igv;
-	}
+	//public void setIgv(Double igv) {
+		//this.igv = igv;
+	//}
 
-	public Double getTotal() {
-		return total;
-	}
+	//public Double getTotal() {
+		//return total;
+	//}
 
-	public void setTotal(Double total) {
-		this.total = total;
-	}
+	//public void setTotal(Double total) {
+		//this.total = total;
+	//}
 
-	public String getMetodo_pago() {
-		return metodo_pago;
-	}
+	//public String getMetodo_pago() {
+		//return metodo_pago;
+	//}
 
-	public void setMetodo_pago(String metodo_pago) {
-		this.metodo_pago = metodo_pago;
-	}
+	//public void setMetodo_pago(String metodo_pago) {
+		//this.metodo_pago = metodo_pago;
+	//}
 
 	public Usuario getUsuario() {
 		return usuario;

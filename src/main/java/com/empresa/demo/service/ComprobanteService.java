@@ -7,7 +7,7 @@ import com.empresa.demo.model.Comprobante;
 public interface ComprobanteService {
 
 	// metodo que nos traera toda la lista de comprobantes
-	public List<Comprobante> findAll();
+	public List<Comprobante> listaFacturas();
 
 	// metodo para guardar un objeto comprobante
 	public void guardar(Comprobante comprobante);

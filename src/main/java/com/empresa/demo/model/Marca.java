@@ -28,7 +28,7 @@ public class Marca implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String mar_nombre;
 
-	@OneToMany(mappedBy = "marca", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "marca", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Producto> productos;
 
 	public Marca() {

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="plantilla/template :: head">
+<head>
+<meta charset="UTF-8" />
+<title>SERVIEXPRESS</title>
+<link rel="stylesheet" href="#" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" href="#" th:href="@{/css/jquery-ui.min.css}">
+<link rel="stylesheet" href="#" th:href="@{/css/signin.css}">
 
 </head>
 <body>
-	<header th:replace="plantilla/template :: header"></header>
-
-	
-
+	<header> </header>
 
 	<div class="container py-5 ">
 		<div class="card bg-ligth">
@@ -17,10 +19,10 @@
 			<div class="card-body"></div>
 
 			<h4 class="card-title">
-	<a class="btn btn-primary"
-				th:href="@{/usuarios/ver_detalle/}+ ${comprobante.usuario.username}">Volver</a>
+				<a class="btn btn-primary"
+					th:href="@{/usuarios/ver_detalle/}+ ${comprobante.usuario.username}">Volver</a>
 
-			
+
 			</h4>
 
 			<form action="@{/comprobante/comprobante_form/}"
@@ -36,7 +38,7 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+			<!--	<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Tipo de Comprobante</label>
 					<div class="col-sm-6">
 						<select th:field="*{tipo_documento}" class="form-control">
@@ -52,7 +54,36 @@
 							<option th:text="'Tarjeta débito'" th:value="tarjeta_debito" />
 						</select>
 					</div>
+				</div>-->
+
+				<div class="form-group row">
+					<label for="buscar_producto" class="col-sm-2 col-form-label">
+						Buscar Producto</label>
+					<div class="col-sm-6">
+						<input type="text" name="buscar_producto" id="buscar_producto"
+							class="form-control" />
+					</div>
 				</div>
+
+				<table th:replace="comprobante/plantilla-items :: itemsComprobante"></table>
+
+				<table id="cargarItemProductos"
+					class="table table-sm table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Precio unitario</th>
+							<th>Cantidad</th>
+							<th>Importe</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+
+					</tbody>
+				</table>
+				<h5><span class="badge badge-secondary" id="gran_total" >0</span></h5>
 
 
 				<div class="form-group row">
@@ -62,12 +93,19 @@
 					</div>
 				</div>
 
-
-
 			</form>
-
 
 		</div>
 	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Bootstrap JS -->
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery-ui.min.js}"></script>
+	<script
+		th:replace="comprobante/js/autocomplete-productos :: javascript"></script>
+
 </body>
 </html>

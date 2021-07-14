@@ -66,4 +66,10 @@ public class ProductoServiceImpl implements ProductoService {
 		
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Producto> findByNombre(String term) {
+		return productoDao.findbyNombre(term);
+	}
+
 }

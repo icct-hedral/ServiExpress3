@@ -38,7 +38,9 @@ public class Mar_Cat_Controller {
 	@RequestMapping(value = "/crear_marca", method = RequestMethod.POST)
 	public String guardarMarca(Marca marca) {
 		marcaServiceImpl.guardar(marca);
+		
 		return ViewConstant.LISTAPRODUCTOS;
+
 	}
 	
 
@@ -54,6 +56,7 @@ public class Mar_Cat_Controller {
 	public String guardarCategoria(Categoria categoria) {
 		categoriaServiceImpl.guardar(categoria);
 		return ViewConstant.LISTAPRODUCTOS;
+
 	}
 	
 

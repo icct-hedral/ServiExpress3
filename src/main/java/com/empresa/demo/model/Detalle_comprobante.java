@@ -24,7 +24,7 @@ public class Detalle_comprobante implements Serializable {
 	private Integer cantidad;
 
 	// relacion de muchos apuntado a la entidad producto
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	// creara un campo en esta entidad, la cual sera la relación que tendremos con
 	// la entidad producto
 	@JoinColumn(name = "id_producto")
@@ -54,6 +54,14 @@ public class Detalle_comprobante implements Serializable {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
 	// este metodo nos calculara el importe en cada linea de producto
