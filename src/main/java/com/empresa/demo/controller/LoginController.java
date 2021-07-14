@@ -23,7 +23,7 @@ public class LoginController {
 			@RequestParam(name="logout",required=false) String logout) {
 		LOG.info("METHOD: showLoginForm() -- PARAMS: error=" + error + ", logout:" + logout);
 		model.addAttribute("error", error);
-		model.addAttribute("logout", logout);
+		model.addAttribute("logout",logout);
 		LOG.info("Returning to login view");
 		return ViewConstant.LOGIN;	
 	}

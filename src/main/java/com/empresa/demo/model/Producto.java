@@ -135,6 +135,15 @@ public class Producto implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Producto [marca=" + marca + ", categoria=" + categoria + "]";
+	}
+
+
 
 	private static final long serialVersionUID = 1L;
 }

@@ -32,9 +32,9 @@
 						</a>
 
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" href="#">Action</a> 
+								<a class="dropdown-item" th:href="@{/adminvista}">Panel control</a> 
 									<a class="dropdown-item" th:href="@{/listar_productos}">Productos</a>
-									<a class="dropdown-item" th:href="@{/usuarios/listauser}">Trabajadores</a>
+									<a class="dropdown-item" th:href="@{/usuarios}">Trabajadores</a>
 
 								<form th:action="@{/logout}" method="post">
 									<button class="dropdown-item" type="submit">Cerrar

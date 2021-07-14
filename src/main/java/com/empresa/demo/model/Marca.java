@@ -68,6 +68,16 @@ public class Marca implements Serializable {
 	}
 	
 	
+	
+	//parsear el nombre para mostrar en la lista
+	@Override
+	public String toString() {
+		return "" + mar_nombre + "";
+	}
+
+
+
+
 	private static final long serialVersionUID = 1L;
 
 }

@@ -1,14 +1,12 @@
 package com.empresa.demo.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.validation.Valid;
 
@@ -23,10 +21,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.empresa.demo.constan.ViewConstant;
 import com.empresa.demo.model.Categoria;
 import com.empresa.demo.model.Marca;
 import com.empresa.demo.model.Producto;
@@ -60,7 +58,7 @@ public class ProductoController {
 		List<Producto> listaproductos=productoServiceImpl.findAll();
 		model.addAttribute("productos",listaproductos);
 		model.addAttribute("titulo","Lista de Productos");
-		return "listar_productos";
+		return ViewConstant.LISTAPRODUCTOS;
 	}
 
 	@GetMapping(value = "/crear_producto")
@@ -71,7 +69,7 @@ public class ProductoController {
 		model.put("marcas", listamarcas);
 		model.put("categorias", listacategorias);
 		model.put("producto", producto);
-		return "crear_producto";
+		return ViewConstant.PRODUCTOFORM;
 	}
 	
 	
@@ -102,11 +100,11 @@ public class ProductoController {
 	
 		productoServiceImpl.guardar(producto);
 		attribute.addFlashAttribute("mensaje", "Agregado correctamente").addFlashAttribute("clase", "success");
-		return "redirect:/crear_producto";
+		return "redirect:/listar_productos";
 	}
 	
-	@GetMapping("/editarproducto/{id}")
-	public String editar(@PathVariable int id, Model model) {
+	@GetMapping("/editarproducto")
+	public String editar(@RequestParam int id, Model model) {
 		Producto producto = productoServiceImpl.buscarporID(id);
 		List<Marca> listamarcas= marcaServiceImpl.findAll();
 		List<Categoria> listCategorias = categoriaServiceImpl.findAll();
@@ -114,7 +112,7 @@ public class ProductoController {
 		model.addAttribute("producto", producto);
 		 model.addAttribute("titulo","Editar Producto");		
 		model.addAttribute("categorias", listCategorias);
-		return "crear_producto";
+		return ViewConstant.PRODUCTOFORM;
 	}
 	
 	

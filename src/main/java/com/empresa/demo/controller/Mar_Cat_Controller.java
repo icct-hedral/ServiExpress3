@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import com.empresa.demo.constan.ViewConstant;
 import com.empresa.demo.model.Categoria;
 import com.empresa.demo.model.Marca;
 import com.empresa.demo.service.CategoriaServiceImpl;
@@ -32,13 +32,13 @@ public class Mar_Cat_Controller {
 		Marca marca = new Marca();
 		model.put("marca", marca);
 		model.put("titulo", "Crear Marca");
-		return "crear_marca";
+		return ViewConstant.MARCAFORM;
 	}
 
 	@RequestMapping(value = "/crear_marca", method = RequestMethod.POST)
 	public String guardarMarca(Marca marca) {
 		marcaServiceImpl.guardar(marca);
-		return "redirect:hola";
+		return ViewConstant.LISTAPRODUCTOS;
 	}
 	
 
@@ -47,20 +47,16 @@ public class Mar_Cat_Controller {
 		Categoria categoria = new Categoria();
 		model.put("categoria", categoria);
 		model.put("titulo", "Crear Categoria");
-		return "crear_categoria";
+		return ViewConstant.CATEGORIAFORM;
 	}
 
 	@RequestMapping(value = "/crear_categoria", method = RequestMethod.POST)
 	public String guardarCategoria(Categoria categoria) {
 		categoriaServiceImpl.guardar(categoria);
-		return "redirect:hola";
+		return ViewConstant.LISTAPRODUCTOS;
 	}
 	
 
-	@RequestMapping(value = "/hola")
-	public String hola() {
-		return "hola";
-	}
 	
 
 }

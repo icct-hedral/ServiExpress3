@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.demo.constan.ViewConstant;
@@ -24,7 +26,7 @@ import com.empresa.demo.services.RolServiceImpl;
 import com.empresa.demo.services.UsuarioServicesImpl;
 
 @Controller
-@RequestMapping(path = "/usuarios")
+@SessionAttributes("usuario")
 public class UsuarioController {
 	
 	@Autowired
@@ -71,7 +73,7 @@ public class UsuarioController {
 	        redirectAttrs
 	                .addFlashAttribute("mensaje", "Ya existe un usuario con ese código")
 	                .addFlashAttribute("clase", "warning");
-	        return "redirect:/usuarios/nuevouser";
+	        return "redirect:/nuevouser";
 	    }
 		
 		userService.guardar(usuario);
@@ -79,12 +81,12 @@ public class UsuarioController {
 		redirectAttrs
         	.addFlashAttribute("mensaje", "Agregado correctamente")
         	.addFlashAttribute("clase", "success");
-		return "redirect:/usuarios/nuevouser";
+		return "redirect:/nuevouser";
 		
 		
 	}
 	
-	@GetMapping(value="/listauser")
+	@GetMapping(value = "/listar_usuarios")
 	public String listarUsuarios(Model model) {
 		
 	
@@ -97,19 +99,19 @@ public class UsuarioController {
 		return ViewConstant.LISTAUSUARIOS;
 	}
 	
-	@GetMapping(value = "/editaruser/{username}")
-	public String mostrarFormularioEditar(@PathVariable("username") String username, Model model) {
+	@GetMapping(value = "/editaruser")
+	public String mostrarFormularioEditar(@RequestParam("username") String username, Model model) {
 	    model.addAttribute("usuario", userRepository.findByUsername(username));
-	    return ViewConstant.EDITUSUARIO;
+	   return ViewConstant.EDITUSUARIO;
 	}
 	
-	@PostMapping(value = "/editaruser/{username}")
+	@PostMapping(value = "/editaruser")
 	public String actualizarProducto(@ModelAttribute @Valid Usuario usuario, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
 	    if (bindingResult.hasErrors()) {
 	        if (usuario.getUsername() != null) {
 	            return ViewConstant.EDITUSUARIO;
 	        }
-	        return "redirect:/usuarios/listauser";
+	        return "redirect:/listar_usuarios";
 	    }
 	    Usuario posibleUsuarioExistente = userRepository.findByUsername(usuario.getUsername());
 
@@ -117,13 +119,13 @@ public class UsuarioController {
 	        redirectAttrs
 	                .addFlashAttribute("mensaje", "Ya existe un producto con ese código")
 	                .addFlashAttribute("clase", "warning");
-	        return "redirect:/usuarios/nuevouser";
+	        return "redirect:/nuevouser";
 	    }
 	    userService.guardar(usuario);
 	    redirectAttrs
 	            .addFlashAttribute("mensaje", "Editado correctamente")
 	            .addFlashAttribute("clase", "success");
-	    return "redirect:/usuarios/listauser";
+	    return "redirect:/listar_usuarios";
 	}
 	
 	@PostMapping(value = "/eliminar")
@@ -135,7 +137,20 @@ public class UsuarioController {
 	            .addFlashAttribute("clase", "warning");
 	    userRepository.deleteById(usuario.getUsername());
 	    
-	    return "redirect:/usuarios/listauser";
+	    return "redirect:/listar_usuarios";
+	}
+	
+	
+	@PostMapping("/guardarrol")
+	public String guardarRol(Rol r,RedirectAttributes redirectAttrs) {
+
+		rolService.guardar(r);
+		
+		redirectAttrs
+        	.addFlashAttribute("mensaje", "Agregado correctamente")
+        	.addFlashAttribute("clase", "success");
+		return "redirect:/nuevouser";
+		
 	}
 	
 	  

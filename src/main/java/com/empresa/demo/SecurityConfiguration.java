@@ -30,14 +30,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/assets/**","/css/**", "/imgs/**","/js/**","/").permitAll()
+			.antMatchers("/vendor/**","/img/**","/image/**","/css/**", "/imgs/**","/js/**","/").permitAll()
 			.anyRequest().authenticated()
 			.and()
 		.formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
 		.usernameParameter("username").passwordParameter("password")
 		.defaultSuccessUrl("/loginsuccess").permitAll()
 		.and()
-		.logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
+		//paths que se utilizan para logout y a donde redirecciona 
+		.logout().logoutUrl("/logout").logoutSuccessUrl("/")
 		.permitAll();
 	}
 

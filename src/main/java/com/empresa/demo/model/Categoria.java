@@ -65,6 +65,15 @@ public class Categoria implements Serializable {
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
+	
+	
+	//Parsear el nombre para mostrar en la lista
+	@Override
+	public String toString() {
+		return "" + cat_nombre + "";
+	}
+
+
 
 	private static final long serialVersionUID = 1L;
 
