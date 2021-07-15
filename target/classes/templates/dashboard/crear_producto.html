@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- ------INICIO del cont principal -->
+<div th:replace="dashboard/parte_superior"></div>
+
+<h1>Crear Producto</h1>
+
+	<form th:action="@{/crear_producto}" th:object="${producto}"
+		method="post" enctype="multipart/form-data">
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Nombre</label>
+			<div class="col-sm-6">
+				<input type="text" th:field="*{nombre}" class="form-control"  th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" ></small>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Categoria</label>
+			<div class="col-sm-6">
+				<select th:field="*{categoria}" class="form-control">
+					<option th:each="categoria : ${categorias}"
+						th:text="${categoria.cat_nombre}" th:value="${categoria.id_categoria}" />
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Marca</label>
+			<div class="col-sm-6">
+				<select th:field="*{marca}" class="form-control">
+					<option th:each="marca : ${marcas}"
+						th:text="${marca.mar_nombre}" th:value="${marca.id_marca}" />
+				</select>
+			</div>
+		</div>
+
+
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Descripción</label>
+			<div class="col-sm-6">
+				<textarea id="area_form" th:field="*{descripcion}"
+					class="form-control" maxlength="255" rows="5"  th:errorclass="'form-control alert-danger'"></textarea>
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" ></small>
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Precio</label>
+			<div class="col-sm-6">
+				<input type="number" th:field="*{precio}" class="form-control"  th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" ></small>
+			</div>
+		</div>
+
+	<!--	<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Stock</label>
+			<div class="col-sm-6">
+				<input type="text" readonly="readonly" th:field="*{stock}" th:value="0" class="form-control" />
+			</div>
+		</div>-->
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label" for="foto">Foto</label>
+			<div class="col-sm-6">
+				<input type="file" name="file" class="form-control" />
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<div class="col-sm-6">
+				<input type="submit" value="Guardar Producto"
+					class="btn btn-primary btn-xs" />
+			</div>
+		</div>
+		
+	</form>
+
+
+
+
+<!-- ------FIN del cont principal -->
+<div th:replace="dashboard/parte_inferior"></div>
