@@ -136,7 +136,7 @@ public class UsuarioController {
 		
 		if(usuario==null) {
 			System.out.println("Usuario no existe en BD");
-			return "redirect:/usuarios/listauser";
+			return "redirect:/listar_usuarios";
 		}
 		model.put("usuario", usuario);
 		model.put("titulo", "Detalle de datos del cliente:  "+ usuario.getNombre()+" "+usuario.getApellido());

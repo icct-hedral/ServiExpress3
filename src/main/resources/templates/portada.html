@@ -11,107 +11,100 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-     <a class="navbar-brand mr-auto" href="/"> <img
+		<a class="navbar-brand mr-auto" href="/"> <img
 			src="imgs/se_logo.jpg" class="img-fluid" alt="Logotipo ServiExpress">
 		</a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">¿Quiénes Somos? &nbsp;</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav nav-bar-right">
-						<li sec:authorize="!isAuthenticated()"><a
-							class="btn btn-outline-info" th:href="@{/login}">Iniciar
-								Sesion</a></li>
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="#">¿Quiénes
+					Somos? &nbsp;</a></li>
+		</ul>
+		<ul class="navbar-nav nav-bar-right">
+			<li sec:authorize="!isAuthenticated()"><a
+				class="btn btn-outline-info" th:href="@{/login}">Iniciar Sesion</a></li>
 
-						<li class="dropdown" sec:authorize="isAuthenticated()"><a
-							class="btn btn-outline-light dropdown-toggle" href="#"
-							role="button" id="dropdownMenuLink" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <span
-								sec:authentication="name"></span>
-						</a>
+			<li class="dropdown" sec:authorize="isAuthenticated()"><a
+				class="btn btn-outline-light dropdown-toggle" href="#" role="button"
+				id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <span sec:authentication="name"></span>
+			</a>
 
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" th:href="@{/adminvista}">Panel control</a> 
-									<a class="dropdown-item" th:href="@{/listar_productos}">Productos</a>
-									<a class="dropdown-item" th:href="@{/usuarios}">Trabajadores</a>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" th:href="@{/adminvista}">Panel control</a>
+					<a class="dropdown-item" th:href="@{/listar_productos}">Productos</a>
+					<a class="dropdown-item" th:href="@{/usuarios}">Trabajadores</a>
 
-								<form th:action="@{/logout}" method="post">
-									<button class="dropdown-item" type="submit">Cerrar
-										Sesion</button>
-								</form>
+					<form th:action="@{/logout}" method="post">
+						<button class="dropdown-item" type="submit">Cerrar Sesion</button>
+					</form>
 
-							</div></li>
-					</ul>
+				</div></li>
+		</ul>
 		<!-- script para el diseño dinamico -->
-		<script type="text/javascript" th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
 		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-</nav>
+	</nav>
 
 	<nav class="navbar sticky-top navbar-expand-md navbar-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" id="nav-link-custom" th:href="@{/}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" >Ofertas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Accesorios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Lubricantes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pinturas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Baterias</a>
-                    </li>
-                </ul>
-            </div>
-            
-        </nav>	
-        
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active container">
-      <img src="imgs/lub2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Lubricantes</h5>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="imgs/pint2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Pinturas</h5>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="imgs/bat2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Baterias</h5>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Anterior</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Siguiente</span>
-  </a>
-</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" id="nav-link-custom"
+					th:href="@{/}">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Ofertas</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Accesorios</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Lubricantes</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Pinturas</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Baterias</a>
+				</li>
+			</ul>
+		</div>
 
-<section>
+	</nav>
+
+	<div id="carouselExampleCaptions" class="carousel slide"
+		data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleCaptions" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active container">
+				<img src="imgs/lub2.jpg" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>Lubricantes</h5>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="imgs/pint2.jpg" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>Pinturas</h5>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="imgs/bat2.jpg" class="d-block w-100" alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>Baterias</h5>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleCaptions"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Anterior</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Siguiente</span>
+		</a>
+	</div>
+
+	<section>
 		<h5 class="subray tit">SECCIÓN LUBRICANTES</h5>
 		<div>
 			<div class="container bora rounded">
@@ -120,18 +113,15 @@
 						<div class="img-fluid">
 							<div class="izquierdo">
 								<h6>
-								<br/>
-									<strong><ins>Todas las Marcas</ins></strong>
+									<br /> <strong><ins>Todas las Marcas</ins></strong>
 								</h6>
 								<ul>
 									<li><strong>Por mayor y menor </strong></li>
 								</ul>
 							</div>
 							<div class="img-fluid central">
-								<img class="d-block w-25 ladoizq" src="#"
-									alt="#"> 
-								<img class="d-block w-25 ladoder" src="#"
-									alt="#">
+								<img class="d-block w-25 ladoizq" src="#" alt="#"> <img
+									class="d-block w-25 ladoder" src="#" alt="#">
 							</div>
 						</div>
 					</div>
@@ -144,18 +134,17 @@
 										<div id="MoverCarruselLubricantes" class="carousel slide"
 											data-ride="carousel">
 											<ol class="carousel-indicators">
-												<li data-target="#MoverCarruselLubricantes" data-slide-to="0"
-													class="active"></li>
-												<li data-target="#MoverCarruselLubricantes" data-slide-to="1"></li>
+												<li data-target="#MoverCarruselLubricantes"
+													data-slide-to="0" class="active"></li>
+												<li data-target="#MoverCarruselLubricantes"
+													data-slide-to="1"></li>
 											</ol>
 											<div class="carousel-inner">
 												<div class="carousel-item active">
-													<img class="d-block w-100" src="#"
-														alt="#">
+													<img class="d-block w-100" src="#" alt="#">
 												</div>
 												<div class="carousel-item">
-													<img class="d-block w-100" src="#"
-														alt="#">
+													<img class="d-block w-100" src="#" alt="#">
 												</div>
 											</div>
 											<a class="carousel-control-prev"
@@ -179,16 +168,16 @@
 			</div>
 		</div>
 
-		
-
-		
-		
 
 
-		
+
+
+
+
+
 	</section>
-	
-	
+
+
 	<footer th:replace="plantilla/templatefooter :: footer"></footer>
 </body>
 </html>

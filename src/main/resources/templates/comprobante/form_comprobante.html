@@ -25,9 +25,9 @@
 
 			</h4>
 
-			<form action="@{/comprobante/comprobante_form/}"
+			<form id="form_comprobante" th:action="@{/form_comprobante}"
 				th:object="${comprobante}" method="POST">
-
+	
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Cliente</label>
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 
-			<!--	<div class="form-group row">
+				<!--	<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Tipo de Comprobante</label>
 					<div class="col-sm-6">
 						<select th:field="*{tipo_documento}" class="form-control">
@@ -79,16 +79,18 @@
 						</tr>
 					</thead>
 					<tbody>
-					
+
 
 					</tbody>
 				</table>
-				<h5><span class="badge badge-secondary" id="gran_total" >0</span></h5>
+				<h5>
+					<span class="badge badge-secondary" id="gran_total">0</span>
+				</h5>
 
 
 				<div class="form-group row">
 					<div class="col-sm-6">
-						<input type="submit" th:value="${titulo}"
+						<input type="submit" value="Crear comprobante"
 							class="btn btn-secondary" />
 					</div>
 				</div>

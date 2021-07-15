@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<body>
+
 
 		<script type="text/javascript" th:fragment="javascript">
 		$(document).ready(function() {
@@ -9,7 +8,7 @@
 
 				source : function(request, response) {
 					$.ajax({
-						url : "/comprobante/cargar-productos/" + request.term,
+						url : "/cargar-productos/" + request.term,
 						dataType : "json",
 						data : {
 							term : request.term
@@ -47,7 +46,7 @@
 				}
 			});
 			
-			$("form_comprobante").submit(function(){
+			$("#form_comprobante").submit(function(){
 				$("#plantillaItemsComprobante").remove();
 				return;
 			});
@@ -101,5 +100,4 @@
 		}
 			
 	</script>
-</body>
-</html>
+

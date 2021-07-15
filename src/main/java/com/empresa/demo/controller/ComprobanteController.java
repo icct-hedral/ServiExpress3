@@ -27,7 +27,7 @@ import com.empresa.demo.service.ComprobanteServiceImpl;
 import com.empresa.demo.service.ProductoServiceImpl;
 
 @Controller
-@RequestMapping("/comprobante")
+
 @SessionAttributes("comprobante")
 public class ComprobanteController {
 	
@@ -54,7 +54,7 @@ public class ComprobanteController {
 		
 		if(usuario==null) {
 			flash.addFlashAttribute("error", "El cliente  no exite en la BD");
-			return "redirect:/usuarios/listauser"; 
+			return "redirect:/listar_usuarios"; 
 		}
 		
 		Comprobante comprobante= new Comprobante();
@@ -114,7 +114,7 @@ public class ComprobanteController {
 		comprobanteServiceImpl.guardar(comprobante);
 		status.setComplete();
 		
-		return "redirect:/usuarios/ver_detalle/"+comprobante.getUsuario().getUsername();
+		return "redirect:/ver_detalle/"+comprobante.getUsuario().getUsername();
 	}
 	
 	

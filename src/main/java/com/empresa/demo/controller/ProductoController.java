@@ -120,8 +120,6 @@ public class ProductoController {
 	}
 	
 	
-	public String editar(@PathVariable int id, Model model) {
-		Produc
 	/**@GetMapping(value = "/crear_producto/{id_producto}")
 	private String actualizarProducto(@PathVariable(value = "id_producto") Integer id_producto, Map<String, Object> model) {
 		
