@@ -39,6 +39,8 @@ public class Rol implements Serializable{
 		
 	}
 	
+	
+
 
 	public Rol(int id_rol, String username, String nombreRol) {
 		super();
@@ -59,16 +61,6 @@ public class Rol implements Serializable{
 	}
 
 
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
 	public String getNombreRol() {
 		return nombreRol;
 	}
@@ -76,6 +68,18 @@ public class Rol implements Serializable{
 
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
