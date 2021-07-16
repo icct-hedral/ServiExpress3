@@ -1,86 +1,115 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	
-	<!-- HEAD -->
 <head th:fragment="head">
 <meta charset="UTF-8">
 <title>SERVIEXPRESS</title>
+
 <link rel="stylesheet" href="#" th:href="@{/css/bootstrap.min.css}">
-<link rel="stylesheet" href="#" th:href="@{/css/jquery-ui.min.css}">
 <link rel="stylesheet" href="#" th:href="@{/css/signin.css}">
 
+<link th:rel="stylesheet" th:href="@{assets/password-strength-meter/password.min.css}" />
+<link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+<link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css}" />
+<link href="@{/css/cabecera.css}" rel="stylesheet" type="text/css" />
+
 </head>
-	
+
 <body>
 	<!-- BARRA DE NAVEGACION -->
 	<header th:fragment="header">
-	
-	
-	
-		<nav class="navbar navbar-expand-lg navbar-dark bg-warning ">
-			<div class="container">
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+
+		<nav class="navbar navbar-expand-lg navbar-dark navv">
+			<a class="blogo navbar-brand mr-auto" href="/"> <img
+				src="imgs/se_logo.jpg" class="img-fluid" alt="Logotipo ServiExpress">
+			</a>
+			<ul class="barr navbar-nav nav-bar-right">
+				<li class="barr" sec:authorize="!isAuthenticated()">
+
+					<button class="navbar-toggler ml-lg-0" type="button"
+						data-toggle="collapse" data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item"><a class="nav-link"
+								id="nav-link-custom" th:href="@{/}">Inicio</a></li>
+							<li class="nav-item"><a class="nav-link" href="#ofertas">Ofertas</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#accesorios">Accesorios</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#lubricantes">Lubricantes</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#pinturas">Pinturas</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#baterias">Baterias</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav justify-content-md-right">
+							<li class="nav-item"><a class="nav-link" href="#">¿Quienes
+									Somos?</a></li>
+							<li><a class="btn btn-outline-info" th:href="@{/login}">Iniciar
+									Sesion</a></li>
+						</ul>
+					</div>
+				</li>
 				
-				
 
-				<!-- ENLACES DE MENU -->
-				<div class="collapse navbar-collapse " id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-							th:href="@{/}">Home <span class="sr-only">(current)</span>
-						</a></li>
-				
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/usuarios/nuevouser}">Registrar Usuario</a></li>
-			
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/listarcarrito}" >
-							<i class="fas fa-cart-plus">(<label style="color:gray;" th:text="${contador}"></label>)</i>Carrito</a>
-						</li>
-							
-						
-					</ul>
+				<li class="barr dropdown" sec:authorize="isAuthenticated()">
 
-					<ul class="navbar-nav nav-bar-right">
-						<li sec:authorize="!isAuthenticated()"><a
-							class="btn btn-outline-dark" th:href="@{/login}">Iniciar
-								Sesion</a></li>
-
-						<li class="dropdown" sec:authorize="isAuthenticated()"><a
-							class="btn btn-outline-dark dropdown-toggle" href="#"
-							role="button" id="dropdownMenuLink" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <span
+					<button class="navbar-toggler ml-lg-0" type="button"
+						data-toggle="collapse" data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/adminvista}">Panel de control</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/listar_productos}">Producto</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/usuarios/listauser}">Trabajadores</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Categoria</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Marca</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Comprobante</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Detalle
+									Comprobante</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Cliente</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav justify-content-md-right">
+							<li class="nav-item nav-link active">Usuario:&nbsp;<span
 								sec:authentication="name"></span>
-						</a>
-
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" href="#">Action</a> <a
-									class="dropdown-item" href="#">Another action</a>
-
+							</li>
+							<li>
 								<form th:action="@{/logout}" method="post">
-									<button class="dropdown-item" type="submit">Cerrar
+									<button class="btn btn-outline-info" type="submit">Cerrar
 										Sesion</button>
 								</form>
-
-							</div></li>
-					</ul>
-
-
-				</div>
-			</div>
-
-        
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+			
+			
+			<!-- script para el diseño dinamico -->
+			<script type="text/javascript"
+				th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+			<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+			<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 		</nav>
-		
+
 	</header>
-	
+
 	<!--CONTENIDO-->
 	<div class="container"></div>
 </body>

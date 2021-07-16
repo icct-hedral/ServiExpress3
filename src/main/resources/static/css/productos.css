@@ -1,0 +1,113 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.conte{
+    height: 510px;
+    width: 25%;
+    box-shadow:0 0 7px #111 ;
+    margin: 30px 30px;
+}
+.conte .card{
+    height: 200px;
+    width: 100%;
+    margin-bottom: 170px;
+}
+.card img{
+    margin: auto;
+    display: block;
+}
+.conte .stromtroper img{
+    height: 330px;
+    width: 330px;
+}
+.conte .stromtroper{
+     background-color: #111;
+}
+.conte .iron-man{
+    background-color: #6A0C0B;
+}
+.conte .spider-man{
+    background-color:#B11313;
+}
+.conte .iron-man img{
+    height: 330px;
+    width: 230px;
+}
+.conte .spider-man img{
+    height: 330px;
+    width: 300px;
+}
+.informacion{
+    height: 80px;
+    width: 100%;
+}
+.informacion h1{
+    font-family: sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    color: #333;
+    margin-bottom: -10px;
+}
+.informacion p{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: .9em;
+    color: #555;
+}
+.precio {
+    height:50px;
+    width: 85%;
+    margin: auto;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box-precio{
+    width: 80px;
+}
+ .precio1{
+    color: red;
+    font-size: .8em;
+}
+.precio .precio2{
+    font-size: 1.5em;
+}
+.shoping{
+    font-size: 1.5em;
+    color: #555;
+}
+
+@media (max-width:320px)
+{
+    .conte{
+        width: 100%;
+        margin: 30px 0;
+    }
+}
+@media (max-width:600px)
+{
+    .conte{
+        width: 100%;
+        margin: 30px 0;
+    }
+}
+
+@media (max-width:700px)
+{
+    .conte{
+        width: 80%;
+        margin: 30px 0;
+    }
+}
+
+@media (max-width:900px)
+{
+    .conte{
+        width: 40%;
+        margin: 30px 20px;
+    }
+}

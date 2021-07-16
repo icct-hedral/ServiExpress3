@@ -1,0 +1,39 @@
+/*
+Cabecera
+*/
+.navv{
+	background-color: #455A64;
+	margin-bottom: 2em;
+	width: 100%
+}
+.blogo{
+	width: 3em;
+}
+.barr{
+	width: 100%;
+}
+
+
+
+
+/*
+pie
+*/
+.pcolor{
+	background-color: #427d55;
+}
+
+.pcolor a{
+	text-decoration: none;
+}
+
+
+
+/* 
+    guia para saber como estan los bordes
+*/
+.borde{
+	border: blue;
+	border-style: solid;
+	border-width: 1px;
+}
