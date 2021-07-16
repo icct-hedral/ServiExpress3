@@ -192,6 +192,11 @@ public class ProductoController {
 		return "redirect:/listar_productos";
 	}
 	
+	@GetMapping("/mostrar_productos")
+	public String mostrarProductos() {
+		return "mostrar_productos";
+	}
+	
 	
 	
 	
